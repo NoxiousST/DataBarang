@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Data Barang</string>
+    <string name="kb">"Kode : "</string>
+    <string name="nb">"Nama : "</string>
+    <string name="hb">"Harga Beli \t\t: "</string>
+    <string name="hj">"Harga Jual \t: "</string>
+    <string name="st">"Stok : "</string>
+</resources>

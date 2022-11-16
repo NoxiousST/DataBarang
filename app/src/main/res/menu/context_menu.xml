@@ -1,0 +1,14 @@
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/upd"
+        android:title="Update">
+    </item>
+    <item
+        android:id="@+id/dlt"
+        android:title="Hapus">
+    </item>
+
+</menu>
