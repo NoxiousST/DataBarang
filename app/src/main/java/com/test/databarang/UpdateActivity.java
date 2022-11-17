@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,6 +24,7 @@ public class UpdateActivity extends AppCompatActivity {
     NumberFormat format = NumberFormat.getCurrencyInstance(locale);
     BigDecimal vHrgBeli, vHargaJual;
     int vBeli, vJual, valueBeli, valueJual;
+    boolean beliChange = false, jualChange = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +96,8 @@ public class UpdateActivity extends AppCompatActivity {
 
             if (cancel)fokus.requestFocus();
             else{
+                if (!beliChange) valueBeli = Integer.parseInt(beli.replaceAll("[\\D]", ""));
+                if (!jualChange) valueJual = Integer.parseInt(jual.replaceAll("[\\D]", ""));
                 db.updateMethod(kode, nama, valueBeli, valueJual, Integer.parseInt(istok));
                 finish();
             }
@@ -104,15 +106,17 @@ public class UpdateActivity extends AppCompatActivity {
         hrgBeliTxt.addTextChangedListener(new MoneyTextWatcher(hrgBeliTxt) {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                vHrgBeli = MoneyTextWatcher.parseCurrencyValue(hrgBeliTxt.getText().toString());
+                vHrgBeli = MoneyTextWatcher.parseCurrencyValue(Objects.requireNonNull(hrgBeliTxt.getText()).toString());
                 valueBeli = (int) vHrgBeli.doubleValue();
+                beliChange = true;
             }
         });
         hrgJualTxt.addTextChangedListener(new MoneyTextWatcher(hrgJualTxt) {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                vHargaJual = MoneyTextWatcher.parseCurrencyValue(hrgJualTxt.getText().toString());
+                vHargaJual = MoneyTextWatcher.parseCurrencyValue(Objects.requireNonNull(hrgJualTxt.getText()).toString());
                 valueJual = (int) vHargaJual.doubleValue();
+                jualChange = true;
             }
         });
     }

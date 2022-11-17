@@ -91,14 +91,14 @@ public class TambahActivity extends AppCompatActivity {
         hrgBeliTxt.addTextChangedListener(new MoneyTextWatcher(hrgBeliTxt) {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                vHrgBeli = MoneyTextWatcher.parseCurrencyValue(hrgBeliTxt.getText().toString());
+                vHrgBeli = MoneyTextWatcher.parseCurrencyValue(Objects.requireNonNull(hrgBeliTxt.getText()).toString());
                 valueBeli = (int) vHrgBeli.doubleValue();
             }
         });
         hrgJualTxt.addTextChangedListener(new MoneyTextWatcher(hrgJualTxt) {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                vHargaJual = MoneyTextWatcher.parseCurrencyValue(hrgJualTxt.getText().toString());
+                vHargaJual = MoneyTextWatcher.parseCurrencyValue(Objects.requireNonNull(hrgJualTxt.getText()).toString());
                 valueJual = (int) vHargaJual.doubleValue();
             }
         });
